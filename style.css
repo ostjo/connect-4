@@ -1,0 +1,312 @@
+@font-face {
+    font-family: "VG5000";
+    src: url("font/VG5000-Regular_web.woff2") format("woff2"),
+        url("font/VG5000-Regular_web.woff") format("woff");
+    /* Typeface by Justin Bihan for VTF (Velvetyne Type Foundry) */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "VG5000";
+}
+
+h1 {
+    font-size: 10em;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #e1d8d0;
+    align-content: flex-end;
+}
+
+main {
+    width: 100%;
+    margin: 40px;
+    display: grid;
+    column-gap: 30px;
+    row-gap: 10px;
+    grid-template-rows: 1fr 42px 1fr;
+    grid-template-columns: 1fr max-content 1fr;
+    align-items: center;
+}
+
+#intro {
+    z-index: 5;
+    min-height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background-color: #e1d8d0;
+    top: 0;
+    left: 0;
+    transition: transform ease-in 1s;
+}
+
+.intro-text {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+    mix-blend-mode: hard-light;
+}
+
+.button {
+    margin: 20px;
+    font-size: 3em;
+    background-color: transparent;
+    border: none;
+    color: black;
+    transition: letter-spacing 0.5s;
+}
+
+.button:hover {
+    color: white;
+    cursor: pointer;
+    letter-spacing: 0.3em;
+}
+
+.circle {
+    position: absolute;
+    height: 250px;
+    width: 250px;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    background-color: orangered;
+}
+
+#board {
+    grid-row: 3;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 20px;
+    align-self: flex-end;
+    border: 20px solid black;
+    align-items: flex-end;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.board-top {
+    transform: translateY(36px);
+    width: 100%;
+    z-index: 0;
+    height: 43px;
+    grid-row: 2;
+    background-image: url("images/upper-border-09.png");
+    background-size: contain;
+}
+
+.player-tab {
+    grid-row: 1 / -1;
+    text-align: center;
+    color: black;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    font-size: 2.5em;
+    border-radius: 20px;
+}
+
+.tab-right {
+    background-color: #227bff;
+    grid-column: 3;
+}
+
+.tab-left {
+    background-color: orangered;
+}
+
+.a-turn,
+.b-turn {
+    position: absolute;
+    background-color: white;
+    padding: 0 15px;
+    border-radius: 10px;
+    transform: rotate(-10deg) translate(40px, 72px);
+    transition: transform ease-in-out 0.2s;
+}
+
+.wiggle {
+    transform: rotate(10deg) translate(60px, 52px);
+    transform-origin: revert;
+}
+
+.board-header {
+    width: 532px;
+    height: 50px;
+    background-color: chartreuse;
+    border-radius: 20px 20px 0px 0;
+}
+
+.column {
+    transition: all ease-in-out 0.4s;
+}
+
+.column:hover {
+    background-color: #ff45008c;
+}
+
+.slot {
+    width: 76px;
+    height: 76px;
+    overflow: hidden;
+}
+
+.hole {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 40px solid black;
+    transform: translate(-32px, -32px);
+    box-shadow: inset -1px -2px 0px 1px rgb(255, 255, 255);
+}
+
+.playerA {
+    background-color: orangered;
+}
+
+.playerB {
+    background-color: #227bff;
+}
+
+#victory {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background-color: orangered;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.clap {
+    position: absolute;
+}
+
+.clap img {
+    width: 120px;
+    height: 120px;
+}
+
+.flip {
+    transform: scaleX(-1);
+}
+
+.highlight {
+    background-color: "";
+    background-image: url("images/chip-win-10.png");
+    background-size: contain;
+    animation-name: blink;
+    animation-iteration-count: 5;
+    animation-duration: 1s;
+}
+
+@keyframes blink {
+    0% {
+        background-color: yellow;
+    }
+    49% {
+        background-color: yellow;
+    }
+    50% {
+        background-color: "";
+    }
+    100% {
+        background-color: "";
+    }
+}
+
+.chip {
+    width: 60px;
+    top: 87px;
+    z-index: 1;
+    height: 60px;
+    border-radius: 50%;
+    background-color: orangered;
+    position: absolute;
+    transition: top ease-in 0.5s, left ease-in-out 0.2s;
+}
+
+.player-hand-b {
+    top: 40px;
+    z-index: 2;
+    width: 110px;
+    height: 107px;
+    background-image: url(images/cursorB-03.png);
+    background-size: contain;
+    position: absolute;
+    transition: left ease-in-out 0.2s;
+}
+
+.open-hand-b {
+    background-image: url(images/cursorB-open.png);
+}
+
+.player-hand-a {
+    top: 40px;
+    z-index: 2;
+    width: 110px;
+    height: 107px;
+    background-image: url(images/cursorA-07.png);
+    background-size: contain;
+    position: absolute;
+    transition: left ease-in-out 0.2s;
+}
+
+.open-hand-a {
+    background-image: url(images/cursorA-open.png);
+}
+
+.move-up-down {
+    animation-name: moveUpDown;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+}
+
+.orange {
+    background-color: orangered;
+}
+
+.blue {
+    background-color: #227bff;
+}
+
+@keyframes moveUpDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+#credit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+    padding: 5px;
+}
+
+#credit p {
+    font-size: 0.7em;
+}
