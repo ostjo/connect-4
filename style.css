@@ -32,7 +32,7 @@ main {
     display: grid;
     column-gap: 30px;
     row-gap: 10px;
-    grid-template-rows: 1fr 42px 1fr;
+    grid-template-rows: 1fr 42px 496px;
     grid-template-columns: 1fr max-content 1fr;
     align-items: center;
 }
@@ -96,7 +96,7 @@ main {
 }
 
 .board-top {
-    transform: translateY(36px);
+    transform: translateY(27px);
     width: 100%;
     z-index: 0;
     height: 43px;
